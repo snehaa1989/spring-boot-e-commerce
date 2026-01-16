@@ -1,0 +1,83 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff9c4 0%, #e8f5e8 100%);
+}
+
+.register-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(76, 175, 80, 0.2);
+  border: 2px solid #66bb6a;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.error-message {
+  color: #d32f2f;
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  padding: 16px;
+  border-radius: 12px;
+  border-left: 4px solid #d32f2f;
+  margin: 16px 0;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.1);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #c8e6c9;
+}
+
+.login-link a {
+  color: #f9a825;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #f57f17;
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+.login-link p {
+  color: #2e7d32;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+::ng-deep .mat-card-header {
+  background: linear-gradient(90deg, #f9a825 0%, #ffd54f 100%);
+  padding: 24px;
+}
+
+::ng-deep .mat-card-title {
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 1.8em;
+  text-align: center;
+  width: 100%;
+}
+
+::ng-deep .mat-card-content {
+  padding: 32px 24px;
+  background: linear-gradient(145deg, #ffffff 0%, #f1f8e9 100%);
+}

@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <span>E-Commerce Store</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="!isLoggedIn">
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/register">Register</button>
+  </ng-container>
+  <ng-container *ngIf="isLoggedIn">
+    <button mat-icon-button routerLink="/profile" class="profile-button">
+      <img [src]="getProfilePicture" 
+             [alt]="displayName" 
+             class="navbar-profile-picture"
+             (error)="onProfileImageError($event)">
+      <span class="profile-name">{{ displayName }}</span>
+    </button>
+    <button mat-icon-button routerLink="/cart" class="nav-icon-button">
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="badge" *ngIf="cartCount$ | async as count">{{ count > 0 ? count : '' }}</span>
+    </button>
+    <button mat-icon-button routerLink="/notifications" class="nav-icon-button">
+      <mat-icon>notifications</mat-icon>
+      <span class="badge" *ngIf="unreadCount$ | async as count">{{ count > 0 ? count : '' }}</span>
+    </button>
+    <button mat-button routerLink="/products">Products</button>
+  <button mat-button routerLink="/categories">Categories</button>
+    <button mat-button routerLink="/orders">My Orders</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-container>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

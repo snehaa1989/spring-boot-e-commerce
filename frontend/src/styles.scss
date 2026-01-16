@@ -1,0 +1,171 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  background: linear-gradient(135deg, #fff9c4 0%, #e8f5e8 100%);
+  min-height: 100vh;
+}
+
+.mat-toolbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(90deg, #f9a825 0%, #66bb6a 100%);
+  color: #2e7d32;
+}
+
+.mat-toolbar .mat-button {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.mat-toolbar .mat-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.mat-card {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+  border: 2px solid #c8e6c9;
+  background: linear-gradient(145deg, #ffffff 0%, #f1f8e9 100%);
+}
+
+.mat-card:hover {
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.25);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.mat-raised-button {
+  border-radius: 8px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mat-raised-button.mat-primary {
+  background: linear-gradient(45deg, #f9a825 0%, #ffd54f 100%);
+  color: #2e7d32;
+  border: none;
+}
+
+.mat-raised-button.mat-primary:hover {
+  background: linear-gradient(45deg, #f57f17 0%, #ffb300 100%);
+  box-shadow: 0 4px 12px rgba(249, 168, 37, 0.4);
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 8px;
+  border-color: #81c784;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #f9a825;
+}
+
+.mat-input-element {
+  color: #2e7d32;
+}
+
+.mat-form-field-label {
+  color: #66bb6a !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #f9a825 !important;
+}
+
+.mat-card-title {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.mat-card-subtitle {
+  color: #f9a825;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.mat-icon {
+  color: #66bb6a;
+}
+
+.mat-icon-button:hover {
+  background-color: rgba(249, 168, 37, 0.1);
+}
+
+.mat-spinner circle {
+  stroke: #f9a825;
+}
+
+.mat-table {
+  background: linear-gradient(145deg, #ffffff 0%, #f1f8e9 100%);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mat-header-cell {
+  font-weight: 600;
+  color: #2e7d32;
+  background-color: #c8e6c9;
+}
+
+.mat-cell {
+  color: #1b5e20;
+  border-bottom: 1px solid #a5d6a7;
+}
+
+.mat-row:hover {
+  background-color: rgba(249, 168, 37, 0.05);
+}
+
+.error-message {
+  color: #d32f2f;
+  background-color: #ffebee;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #d32f2f;
+  margin: 16px 0;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+h1, h2, h3 {
+  color: #2e7d32;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+a {
+  color: #f9a825;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  color: #f57f17;
+  text-decoration: underline;
+}
+
+button.mat-button {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+button.mat-button:hover {
+  background-color: rgba(102, 187, 106, 0.1);
+}

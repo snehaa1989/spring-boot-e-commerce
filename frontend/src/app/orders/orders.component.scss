@@ -1,0 +1,79 @@
+.orders-container {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  margin: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #2e7d32;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(45deg, #2e7d32, #66bb6a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.orders-table {
+  width: 100%;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.1);
+}
+
+table {
+  width: 100%;
+  min-width: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.no-orders {
+  text-align: center;
+  padding: 60px 20px;
+  color: #2e7d32;
+  background: linear-gradient(135deg, #fff9c4 0%, #e8f5e8 100%);
+  border-radius: 16px;
+  border: 2px dashed #66bb6a;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+mat-header-cell {
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #2e7d32 0%, #66bb6a 100%);
+  font-size: 1.1em;
+  padding: 16px 12px;
+}
+
+mat-cell {
+  padding: 12px;
+  color: #1b5e20;
+  font-weight: 500;
+  border-bottom: 1px solid #c8e6c9;
+}
+
+mat-row:hover {
+  background-color: rgba(249, 168, 37, 0.08);
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+mat-row {
+  transition: all 0.2s ease;
+}

@@ -1,0 +1,38 @@
+<div class="products-container">
+  <div class="search-section">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search Products</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (keyup)="onSearchChange()" placeholder="Search by name...">
+      <button matSuffix mat-icon-button (click)="onSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="loading-spinner" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="products-grid" *ngIf="!isLoading">
+    <mat-card class="product-card" *ngFor="let product of products">
+      <mat-card-header>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle>${{ product.price }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="product.imageUrl || getDefaultImage(product.name)" [alt]="product.name" (error)="onImageError($event)">
+      <mat-card-content>
+        <p>{{ product.description }}</p>
+        <p><strong>Stock:</strong> {{ product.stockQuantity }}</p>
+        <p *ngIf="product.category"><strong>Category:</strong> {{ product.category.name }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="addToCart(product)">Add to Cart</button>
+        <button mat-button>View Details</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div class="no-products" *ngIf="products.length === 0">
+      <p>No products found.</p>
+    </div>
+  </div>
+</div>

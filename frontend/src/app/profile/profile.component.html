@@ -1,0 +1,138 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <h1>My Profile</h1>
+    <button mat-button color="primary" (click)="toggleEdit()">
+      {{ isEditing ? 'Cancel' : 'Edit Profile' }}
+    </button>
+  </div>
+
+  <div class="loading-spinner" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="profile-content" *ngIf="!isLoading && profile">
+    <mat-card class="profile-card">
+      <mat-card-content>
+        <div class="profile-picture-section">
+          <div class="profile-picture-container">
+            <img [src]="profile.profilePicture || getDefaultProfilePicture()" 
+                 [alt]="profile.username" 
+                 class="profile-picture"
+                 (error)="onImageError($event)">
+            <div class="upload-overlay" *ngIf="isEditing">
+              <input type="file" 
+                     accept="image/*" 
+                     (change)="onFileSelected($event)"
+                     #fileInput>
+              <button mat-icon-button (click)="fileInput.click()">
+                <mat-icon>camera_alt</mat-icon>
+              </button>
+            </div>
+          </div>
+          
+          <div class="picture-preview" *ngIf="previewUrl">
+            <img [src]="previewUrl" alt="Preview" class="preview-image">
+            <div class="preview-actions">
+              <button mat-raised-button color="primary" (click)="uploadProfilePicture()">
+                Upload
+              </button>
+              <button mat-button (click)="selectedFile = null; previewUrl = null">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-info">
+          <div class="info-section">
+            <h3>Personal Information</h3>
+            
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Username</mat-label>
+              <input matInput 
+                     [value]="profile.username" 
+                     [readonly]="!isEditing"
+                     [(ngModel)]="profile.username">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput 
+                     type="email"
+                     [value]="profile.email" 
+                     [readonly]="!isEditing"
+                     [(ngModel)]="profile.email">
+            </mat-form-field>
+
+            <div class="name-fields">
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>First Name</mat-label>
+                <input matInput 
+                       [value]="profile.firstName" 
+                       [readonly]="!isEditing"
+                       [(ngModel)]="profile.firstName">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput 
+                       [value]="profile.lastName" 
+                       [readonly]="!isEditing"
+                       [(ngModel)]="profile.lastName">
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Phone</mat-label>
+              <input matInput 
+                     type="tel"
+                     [value]="profile.phone || ''" 
+                     [readonly]="!isEditing"
+                     [(ngModel)]="profile.phone">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Address</mat-label>
+              <textarea matInput 
+                        [value]="profile.address || ''" 
+                        [readonly]="!isEditing"
+                        [(ngModel)]="profile.address"
+                        rows="3"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="action-buttons" *ngIf="isEditing">
+            <button mat-raised-button color="primary" (click)="saveProfile()">
+              Save Changes
+            </button>
+            <button mat-button (click)="toggleEdit()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stats-card">
+      <mat-card-content>
+        <h3>Account Statistics</h3>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <mat-icon class="stat-icon">calendar_today</mat-icon>
+            <div class="stat-info">
+              <div class="stat-label">Member Since</div>
+              <div class="stat-value">{{ profile.createdAt | date:'longDate' }}</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <mat-icon class="stat-icon">update</mat-icon>
+            <div class="stat-info">
+              <div class="stat-label">Last Updated</div>
+              <div class="stat-value">{{ profile.updatedAt | date:'longDate' }}</div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
