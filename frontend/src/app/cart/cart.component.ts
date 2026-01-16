@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService, CartItem } from '../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ImageUtils } from '../utils/image.utils';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -26,6 +28,14 @@ export class CartComponent implements OnInit {
 
   updateQuantity(productId: string, quantity: number): void {
     this.cartService.updateQuantity(productId, quantity);
+  }
+
+  getDefaultImage(productName: string): string {
+    return ImageUtils.getDefaultProductImage(productName);
+  }
+
+  onImageError(event: any): void {
+    ImageUtils.onProductImageError(event);
   }
 
   removeFromCart(productId: string): void {
@@ -63,16 +73,5 @@ export class CartComponent implements OnInit {
 
   private updateTotalPrice(): void {
     this.totalPrice = this.cartService.getTotalPrice();
-  }
-
-  getDefaultImage(productName: string): string {
-    // Generate placeholder images based on product name
-    const seed = productName.toLowerCase().replace(/\s+/g, '-');
-    return `https://picsum.photos/seed/${seed}/300/200.jpg`;
-  }
-
-  onImageError(event: any): void {
-    // Fallback to a generic placeholder if image fails to load
-    event.target.src = 'https://picsum.photos/seed/placeholder/300/200.jpg';
   }
 }

@@ -1,19 +1,11 @@
+@import '../styles/common.scss';
+
 .profile-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  @extend .container;
 }
 
 .profile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-
-  h1 {
-    margin: 0;
-    color: #333;
-  }
+  @extend .header;
 }
 
 .profile-content {

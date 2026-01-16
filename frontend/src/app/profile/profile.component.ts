@@ -3,6 +3,7 @@ import { ProfileService, UserProfile } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { ImageUtils } from '../utils/image.utils';
 
 @Component({
   selector: 'app-profile',
@@ -120,18 +121,15 @@ export class ProfileComponent implements OnInit {
   }
 
   get initials(): string {
-    if (!this.profile) return '?';
-    const first = this.profile.firstName?.charAt(0) || '';
-    const last = this.profile.lastName?.charAt(0) || '';
-    return (first + last).toUpperCase();
+    return ImageUtils.getInitials(this.profile?.firstName, this.profile?.lastName);
   }
 
   getDefaultProfilePicture(): string {
     if (!this.profile) return 'https://via.placeholder.com/150';
-    return `https://ui-avatars.com/api/?name=${this.profile.username}&background=random&color=fff&size=200`;
+    return ImageUtils.getDefaultProfilePicture(this.profile.username);
   }
 
   onImageError(event: any): void {
-    event.target.src = this.getDefaultProfilePicture();
+    ImageUtils.onProfileImageError(event, this.profile?.username || 'User');
   }
 }

@@ -56,13 +56,6 @@ export class AuthService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('token', response.token);
           this.currentUserSubject.next(user);
-          
-          // Add welcome notification
-          this.notificationService.addNotification(
-            'Welcome Back!',
-            `Successfully logged in as ${user.username}`,
-            'success'
-          );
         }
         return response;
       })

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.models';
+import { CartService } from '../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ImageUtils } from '../utils/image.utils';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -62,22 +64,10 @@ export class ProductsComponent implements OnInit {
   }
 
   getDefaultImage(productName: string): string {
-    // Generate placeholder images based on product name
-    const seed = productName.toLowerCase().replace(/\s+/g, '-');
-    return `https://picsum.photos/seed/${seed}/300/200.jpg`;
+    return ImageUtils.getDefaultProductImage(productName);
   }
 
   onImageError(event: any): void {
-    // Fallback to a generic placeholder if image fails to load
-    event.target.src = 'https://picsum.photos/seed/placeholder/300/200.jpg';
-  }
-
-  addToCart(product: Product): void {
-    this.cartService.addToCart(product, 1);
-    this.snackBar.open(`${product.name} added to cart`, 'Close', {
-      duration: 3000,
-      horizontalPosition: 'end',
-      verticalPosition: 'top'
-    });
+    ImageUtils.onProductImageError(event);
   }
 }

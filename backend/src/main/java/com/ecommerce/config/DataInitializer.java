@@ -70,46 +70,47 @@ public class DataInitializer implements CommandLineRunner {
         
         if (electronics != null) {
             Product laptop = new Product();
-            laptop.setName("Laptop Pro");
-            laptop.setDescription("High-performance laptop for professionals");
-            laptop.setPrice(new BigDecimal("999.99"));
-            laptop.setStockQuantity(10);
-            laptop.setCategoryId(electronics.getId());
-            laptop.setImageUrl("https://p2-ofp.static.pub//fes/cms/2024/07/17/109vq5fdalv01w5jsu6vh35ncnk5jn890135.png");
-            productRepository.save(laptop);
+                laptop.setName("Laptop Pro");
+                laptop.setDescription("High-performance laptop for professionals");
+                laptop.setPrice(new BigDecimal("999.99"));
+                laptop.setStockQuantity(10);
+                laptop.setCategoryId(electronics.getId());
+                laptop.setImageUrl("https://via.placeholder.com/300x200/4CAF50/ffffff?text=Laptop+Pro");
+                productRepository.save(laptop);
+                
+                Product smartphone = new Product();
+                smartphone.setName("Smartphone X");
+                smartphone.setDescription("Latest smartphone with advanced features");
+                smartphone.setPrice(new BigDecimal("699.99"));
+                smartphone.setStockQuantity(25);
+                smartphone.setCategoryId(electronics.getId());
+                smartphone.setImageUrl("https://via.placeholder.com/300x200/2196F3/ffffff?text=Smartphone+X");
+                productRepository.save(smartphone);
+            }
             
-            Product smartphone = new Product();
-            smartphone.setName("Smartphone X");
-            smartphone.setDescription("Latest smartphone with advanced features");
-            smartphone.setPrice(new BigDecimal("699.99"));
-            smartphone.setStockQuantity(25);
-            smartphone.setCategoryId(electronics.getId());
-            smartphone.setImageUrl("https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257690_Google_Pixel_9A_AJohnson_0001.jpg?quality=90&strip=all&crop=16.675%2C0%2C66.65%2C100&w=2400");
-            productRepository.save(smartphone);
+            if (clothing != null) {
+                Product tshirt = new Product();
+                tshirt.setName("Cotton T-Shirt");
+                tshirt.setDescription("Comfortable cotton t-shirt");
+                tshirt.setPrice(new BigDecimal("29.99"));
+                tshirt.setStockQuantity(50);
+                tshirt.setCategoryId(clothing.getId());
+                tshirt.setImageUrl("https://via.placeholder.com/300x200/FF9800/ffffff?text=Cotton+T-Shirt");
+                productRepository.save(tshirt);
+            }
+            
+            if (books != null) {
+                Product novel = new Product();
+                novel.setName("Bestseller Novel");
+                novel.setDescription("Popular fiction novel");
+                novel.setPrice(new BigDecimal("19.99"));
+                novel.setStockQuantity(30);
+                novel.setCategoryId(books.getId());
+                novel.setImageUrl("https://via.placeholder.com/300x200/9C27B0/ffffff?text=Bestseller+Novel");
+                productRepository.save(novel);
+            }
+            
+            System.out.println("Created sample products");
         }
-        
-        if (clothing != null) {
-            Product tshirt = new Product();
-            tshirt.setName("Cotton T-Shirt");
-            tshirt.setDescription("Comfortable cotton t-shirt");
-            tshirt.setPrice(new BigDecimal("29.99"));
-            tshirt.setStockQuantity(50);
-            tshirt.setCategoryId(clothing.getId());
-            tshirt.setImageUrl("");
-            productRepository.save(tshirt);
-        }
-        
-        if (books != null) {
-            Product novel = new Product();
-            novel.setName("Bestseller Novel");
-            novel.setDescription("Popular fiction novel");
-            novel.setPrice(new BigDecimal("19.99"));
-            novel.setStockQuantity(30);
-            novel.setCategoryId(books.getId());
-            novel.setImageUrl("");
-            productRepository.save(novel);
-        }
-        
-        System.out.println("Created sample products");
     }
 }
