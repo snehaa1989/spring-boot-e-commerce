@@ -113,4 +113,4 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Created sample products");
         }
     }
-}
+
