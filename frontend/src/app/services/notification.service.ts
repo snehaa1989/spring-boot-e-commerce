@@ -19,7 +19,51 @@ export class NotificationService {
   public notifications$: Observable<Notification[]> = this.notifications.asObservable();
 
   constructor() {
-    // Initialize with some default notifications if needed
+    // Initialize with some default notifications
+    const sampleNotifications: Notification[] = [
+      {
+        id: this.generateId(),
+        title: 'Welcome to E-Commerce Store!',
+        message: 'Thank you for joining our platform. Start exploring our amazing products.',
+        type: 'success',
+        timestamp: new Date(Date.now() - 1000 * 60 * 5), // 5 minutes ago
+        read: false
+      },
+      {
+        id: this.generateId(),
+        title: 'New Product Alert',
+        message: 'Check out our latest Laptop Pro with amazing features!',
+        type: 'info',
+        timestamp: new Date(Date.now() - 1000 * 60 * 60), // 1 hour ago
+        read: false
+      },
+      {
+        id: this.generateId(),
+        title: 'Order Confirmed',
+        message: 'Your order #12345 has been confirmed and is being processed.',
+        type: 'success',
+        timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
+        read: true
+      },
+      {
+        id: this.generateId(),
+        title: 'Special Offer',
+        message: 'Get 20% off on all electronics this weekend!',
+        type: 'warning',
+        timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24), // 1 day ago
+        read: true
+      },
+      {
+        id: this.generateId(),
+        title: 'Payment Successful',
+        message: 'Your payment for order #12344 has been processed successfully.',
+        type: 'success',
+        timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2), // 2 days ago
+        read: true
+      }
+    ];
+    
+    this.notifications.next(sampleNotifications);
   }
 
   addNotification(notification: Omit<Notification, 'id' | 'timestamp' | 'read'>): void {

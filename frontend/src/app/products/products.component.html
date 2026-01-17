@@ -1,38 +1,111 @@
 <div class="products-container">
+  <!-- Search Section -->
   <div class="search-section">
-    <mat-form-field appearance="outline" class="search-field">
-      <mat-label>Search Products</mat-label>
-      <input matInput [(ngModel)]="searchTerm" (keyup)="onSearchChange()" placeholder="Search by name...">
-      <button matSuffix mat-icon-button (click)="onSearch()">
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-  </div>
-
-  <div class="loading-spinner" *ngIf="isLoading">
-    <mat-spinner></mat-spinner>
-  </div>
-
-  <div class="products-grid" *ngIf="!isLoading">
-    <mat-card class="product-card" *ngFor="let product of products">
-      <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle>${{ product.price }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image [src]="product.imageUrl || getDefaultImage(product.name)" [alt]="product.name" (error)="onImageError($event)">
+    <mat-card class="search-card">
       <mat-card-content>
-        <p>{{ product.description }}</p>
-        <p><strong>Stock:</strong> {{ product.stockQuantity }}</p>
-        <p *ngIf="product.category"><strong>Category:</strong> {{ product.category.name }}</p>
+        <div class="search-header">
+          <mat-icon class="search-icon">search</mat-icon>
+          <h2>Find Your Perfect Product</h2>
+        </div>
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search Products</mat-label>
+          <input matInput [(ngModel)]="searchTerm" (keyup)="onSearchChange()" placeholder="Search by name, category...">
+          <button matSuffix mat-icon-button (click)="onSearch()" class="search-btn">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary">Add to Cart</button>
-        <button mat-button>View Details</button>
-      </mat-card-actions>
     </mat-card>
+  </div>
 
+  <!-- Loading State -->
+  <div class="loading-spinner" *ngIf="isLoading">
+    <mat-card class="loading-card">
+      <mat-card-content class="loading-content">
+        <mat-spinner></mat-spinner>
+        <p>Finding amazing products for you...</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="products-section" *ngIf="!isLoading">
+    <div class="section-header" *ngIf="products.length > 0">
+      <mat-icon class="section-icon">shopping_bag</mat-icon>
+      <h2>Available Products</h2>
+      <span class="product-count">{{ products.length }} products found</span>
+    </div>
+    
+    <div class="products-grid">
+      <mat-card class="product-card" *ngFor="let product of products">
+        <div class="product-badge" *ngIf="product.stockQuantity <= 5">
+          <mat-icon>warning</mat-icon>
+          <span>Low Stock</span>
+        </div>
+        
+        <div class="product-image-container">
+          <img [src]="product.imageUrl || getDefaultImage(product.name)" 
+               [alt]="product.name" 
+               class="product-image"
+               (error)="onImageError($event)">
+          <div class="product-overlay">
+            <button mat-icon-button class="quick-view-btn" (click)="viewProductDetails(product)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </div>
+        </div>
+        
+        <mat-card-header>
+          <mat-card-title>{{ product.name }}</mat-card-title>
+          <mat-card-subtitle class="price">${{ product.price }}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <p class="product-description">{{ product.description || 'No description available' }}</p>
+          <div class="product-meta">
+            <div class="stock-info" [class.low-stock]="product.stockQuantity <= 5">
+              <mat-icon>inventory_2</mat-icon>
+              <span>{{ product.stockQuantity }} in stock</span>
+            </div>
+            <div class="category-info" *ngIf="product.category">
+              <mat-icon>category</mat-icon>
+              <span>{{ product.category.name }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+        
+        <mat-card-actions>
+          <button mat-raised-button 
+                  color="primary" 
+                  class="add-to-cart-btn"
+                  (click)="addToCart(product)"
+                  [disabled]="product.stockQuantity === 0">
+            <mat-icon>add_shopping_cart</mat-icon>
+            <span>Add to Cart</span>
+          </button>
+          <button mat-button 
+                  class="view-details-btn"
+                  (click)="viewProductDetails(product)">
+            <mat-icon>info</mat-icon>
+            <span>Details</span>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- No Products State -->
     <div class="no-products" *ngIf="products.length === 0">
-      <p>No products found.</p>
+      <mat-card class="empty-state-card">
+        <mat-card-content class="empty-state-content">
+          <mat-icon class="empty-icon">search_off</mat-icon>
+          <h3>No Products Found</h3>
+          <p>Try adjusting your search terms or browse our categories.</p>
+          <button mat-raised-button routerLink="/categories" color="primary">
+            <mat-icon>category</mat-icon>
+            Browse Categories
+          </button>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

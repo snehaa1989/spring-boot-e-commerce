@@ -1,31 +1,60 @@
-<mat-toolbar color="primary">
-  <span>E-Commerce Store</span>
+<mat-toolbar color="primary" class="main-navbar">
+  <!-- Logo and Brand -->
+  <div class="navbar-brand">
+    <mat-icon class="brand-icon">store</mat-icon>
+    <span class="brand-text">E-Commerce Store</span>
+  </div>
+  
   <span class="spacer"></span>
-  <ng-container *ngIf="!isLoggedIn">
-    <button mat-button routerLink="/login">Login</button>
-    <button mat-button routerLink="/register">Register</button>
-  </ng-container>
-  <ng-container *ngIf="isLoggedIn">
-    <button mat-icon-button routerLink="/profile" class="profile-button">
-      <img [src]="getProfilePicture" 
-             [alt]="displayName" 
-             class="navbar-profile-picture"
-             (error)="onProfileImageError($event)">
-      <span class="profile-name">{{ displayName }}</span>
+  
+  <!-- Navigation Links -->
+  <div class="nav-links" *ngIf="isLoggedIn">
+    <button mat-button routerLink="/products" class="nav-link">
+      <mat-icon>shopping_bag</mat-icon>
+      <span>Products</span>
     </button>
-    <button mat-icon-button routerLink="/cart" class="nav-icon-button">
-      <mat-icon>shopping_cart</mat-icon>
-      <span class="badge" *ngIf="cartCount$ | async as count">{{ count > 0 ? count : '' }}</span>
+    <button mat-button routerLink="/categories" class="nav-link">
+      <mat-icon>category</mat-icon>
+      <span>Categories</span>
     </button>
-    <button mat-icon-button routerLink="/notifications" class="nav-icon-button">
-      <mat-icon>notifications</mat-icon>
-      <span class="badge" *ngIf="unreadCount$ | async as count">{{ count > 0 ? count : '' }}</span>
+    <button mat-button routerLink="/orders" class="nav-link">
+      <mat-icon>receipt_long</mat-icon>
+      <span>My Orders</span>
     </button>
-    <button mat-button routerLink="/products">Products</button>
-  <button mat-button routerLink="/categories">Categories</button>
-    <button mat-button routerLink="/orders">My Orders</button>
-    <button mat-button (click)="logout()">Logout</button>
-  </ng-container>
+  </div>
+  
+  <span class="spacer"></span>
+  
+  <!-- Auth Actions -->
+  <div class="nav-actions">
+    <!-- Guest Actions -->
+    <ng-container *ngIf="!isLoggedIn">
+      <button mat-button routerLink="/login" class="auth-btn">Login</button>
+      <button mat-raised-button routerLink="/register" class="auth-btn register-btn">Register</button>
+    </ng-container>
+    
+    <!-- User Actions -->
+    <ng-container *ngIf="isLoggedIn">
+      <button mat-icon-button routerLink="/profile" class="nav-icon-button profile-button">
+        <img [src]="getProfilePicture" 
+               [alt]="displayName" 
+               class="navbar-profile-picture"
+               (error)="onProfileImageError($event)">
+      </button>
+      <button mat-icon-button routerLink="/cart" class="nav-icon-button">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="badge" *ngIf="cartCount$ | async as count">{{ count > 0 ? count : '' }}</span>
+      </button>
+      <button mat-icon-button routerLink="/notifications" class="nav-icon-button">
+        <mat-icon>notifications</mat-icon>
+        <span class="badge" *ngIf="unreadCount$ | async as count">{{ count > 0 ? count : '' }}</span>
+      </button>
+      <button mat-button (click)="logout()" class="logout-btn">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </ng-container>
+  </div>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

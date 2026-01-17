@@ -63,6 +63,23 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
+    this.snackBar.open(`${product.name} added to cart!`, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top'
+    });
+  }
+
+  viewProductDetails(product: Product): void {
+    // Navigate to product details page (you can implement this later)
+    console.log('View details for:', product);
+    this.snackBar.open(`Opening details for ${product.name}`, 'Close', {
+      duration: 2000
+    });
+  }
+
   getDefaultImage(productName: string): string {
     return ImageUtils.getDefaultProductImage(productName);
   }

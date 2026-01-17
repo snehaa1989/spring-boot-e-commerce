@@ -14,7 +14,7 @@ A full-stack e-commerce application built with Spring Boot and Angular, featurin
 ### Frontend (Angular)
 - **Framework**: Angular 17
 - **UI Library**: Angular Material
-- **Styling**: SCSS
+- **Styling**: CSS
 - **HTTP Client**: Angular HttpClient
 - **State Management**: RxJS
 

@@ -2,15 +2,82 @@
   flex: 1 1 auto;
 }
 
-mat-toolbar {
+.main-navbar {
   padding: 0 24px;
   height: 64px;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-mat-toolbar .mat-button {
+/* Brand Section */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: 24px;
+}
+
+.brand-icon {
+  font-size: 28px;
+  color: #ffd54f;
+  background: linear-gradient(45deg, #f9a825, #ffd54f);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.brand-text {
+  font-size: 1.4em;
+  font-weight: 700;
+  background: linear-gradient(45deg, #f9a825, #ffd54f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 4px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: transparent;
+  border: 2px solid transparent;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-link mat-icon {
+  font-size: 20px;
+}
+
+/* Auth Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-btn {
   margin: 0 4px;
   padding: 8px 16px;
   border-radius: 8px;
@@ -20,33 +87,57 @@ mat-toolbar .mat-button {
   letter-spacing: 0.5px;
 }
 
-mat-toolbar .mat-button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+.register-btn {
+  background: linear-gradient(45deg, #4caf50, #66bb6a);
+  color: white;
+}
+
+.register-btn:hover {
+  background: linear-gradient(45deg, #45a049, #5cb85c);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
 }
 
-mat-toolbar span:first-child {
-  font-size: 1.5em;
-  font-weight: 700;
-  background: linear-gradient(45deg, #f9a825, #ffd54f);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: none;
-  margin-right: 16px;
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  color: #ffcdd2;
 }
 
+.logout-btn:hover {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.5);
+  color: #ffebee;
+  transform: translateY(-1px);
+}
+
+/* Icon Buttons */
 .nav-icon-button {
   position: relative;
   margin: 0 4px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.nav-icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .nav-icon-button .badge {
   position: absolute;
   top: 6px;
   right: 6px;
-  background-color: #f44336;
+  background: linear-gradient(45deg, #f44336, #ef5350);
   color: white;
   border-radius: 50%;
   width: 18px;
@@ -58,4 +149,73 @@ mat-toolbar span:first-child {
   justify-content: center;
   min-width: 18px;
   line-height: 1;
+  box-shadow: 0 2px 4px rgba(244, 67, 54, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Profile Button */
+.profile-button {
+  overflow: hidden;
+}
+
+.navbar-profile-picture {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffd54f;
+  transition: all 0.3s ease;
+}
+
+.profile-button:hover .navbar-profile-picture {
+  border-color: #fff;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-navbar {
+    padding: 0 16px;
+  }
+  
+  .navbar-brand {
+    margin-right: 16px;
+  }
+  
+  .brand-text {
+    font-size: 1.2em;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-actions {
+    gap: 4px;
+  }
+  
+  .auth-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  
+  .logout-btn span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-text {
+    display: none;
+  }
+  
+  .nav-actions .auth-btn:not(.register-btn) {
+    display: none;
+  }
 }

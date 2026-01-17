@@ -37,7 +37,6 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule,
     AppRoutingModule,
     MaterialModule
   ],

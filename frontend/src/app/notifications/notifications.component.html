@@ -1,50 +1,84 @@
 <div class="notifications-container">
-  <h3>Notifications</h3>
-  
+  <!-- Header -->
   <div class="notifications-header">
-    <span class="unread-count">{{ unreadCount }} unread</span>
-    <button mat-button (click)="markAllAsRead()" *ngIf="unreadCount > 0">
-      Mark all as read
-    </button>
-    <button mat-button (click)="clearAll()">
-      Clear all
-    </button>
+    <div class="header-left">
+      <mat-icon class="header-icon">notifications</mat-icon>
+      <h2>Notifications</h2>
+    </div>
+    <div class="header-right">
+      <span class="unread-count" *ngIf="unreadCount > 0">
+        {{ unreadCount }} new
+      </span>
+      <div class="header-actions">
+        <button mat-icon-button 
+                (click)="markAllAsRead()" 
+                *ngIf="unreadCount > 0"
+                matTooltip="Mark all as read"
+                class="action-btn">
+          <mat-icon>done_all</mat-icon>
+        </button>
+        <button mat-icon-button 
+                (click)="clearAll()" 
+                matTooltip="Clear all notifications"
+                class="action-btn clear-btn">
+          <mat-icon>clear_all</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
 
+  <!-- Notifications List -->
   <div class="notifications-list" *ngIf="notifications$ | async as notifications">
     <div class="notification-item" 
-         *ngFor="let notification of notifications" 
-         [class.unread]="!notification.read">
+         *ngFor="let notification of notifications; let i = index" 
+         [class.unread]="!notification.read"
+         [style.animation-delay]="i * 0.1 + 's'">
       
-      <mat-icon class="notification-icon" 
-                [class]="notification.type">
-        {{ getNotificationIcon(notification.type) }}
-      </mat-icon>
-      
-      <div class="notification-content">
-        <div class="notification-title">{{ notification.title }}</div>
-        <div class="notification-message">{{ notification.message }}</div>
-        <div class="notification-time">{{ notification.timestamp | date:'short' }}</div>
+      <!-- Notification Icon -->
+      <div class="notification-icon-container">
+        <mat-icon class="notification-icon" 
+                  [class]="notification.type">
+          {{ getNotificationIcon(notification.type) }}
+        </mat-icon>
+        <div class="notification-dot" *ngIf="!notification.read"></div>
       </div>
       
+      <!-- Notification Content -->
+      <div class="notification-content">
+        <div class="notification-header">
+          <div class="notification-title">{{ notification.title }}</div>
+          <div class="notification-time">{{ notification.timestamp | date:'short' }}</div>
+        </div>
+        <div class="notification-message">{{ notification.message }}</div>
+      </div>
+      
+      <!-- Notification Actions -->
       <div class="notification-actions">
         <button mat-icon-button 
                 (click)="markAsRead(notification.id)" 
                 *ngIf="!notification.read"
-                matTooltip="Mark as read">
+                matTooltip="Mark as read"
+                class="action-btn">
           <mat-icon>done</mat-icon>
         </button>
         <button mat-icon-button 
                 (click)="removeNotification(notification.id)"
-                matTooltip="Remove">
+                matTooltip="Remove notification"
+                class="action-btn remove-btn">
           <mat-icon>close</mat-icon>
         </button>
       </div>
     </div>
     
+    <!-- No Notifications State -->
     <div class="no-notifications" *ngIf="notifications.length === 0">
-      <mat-icon>notifications_off</mat-icon>
-      <p>No notifications</p>
+      <mat-icon class="empty-icon">notifications_off</mat-icon>
+      <h3>No Notifications</h3>
+      <p>You're all caught up! Check back later for updates.</p>
+      <button mat-raised-button color="primary" routerLink="/products">
+        <mat-icon>shopping_bag</mat-icon>
+        Browse Products
+      </button>
     </div>
   </div>
 </div>

@@ -19,6 +19,10 @@ export class NotificationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Also subscribe to count updates when notifications change
+    this.notifications$.subscribe(notifications => {
+      this.unreadCount = notifications.filter(n => !n.read).length;
+    });
   }
 
   markAsRead(notificationId: string): void {

@@ -74,7 +74,7 @@ The application uses:
 - Angular 17
 - Angular Material for UI components
 - RxJS for reactive programming
-- SCSS for styling
+- CSS for styling
 
 ## Build
 
