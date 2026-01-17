@@ -176,6 +176,7 @@ The application automatically initializes with:
 - Admin dashboard
 - Email notifications
 - Image upload functionality
+- Profile updates
 
 ## Contributing
 
