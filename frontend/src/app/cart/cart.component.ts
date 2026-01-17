@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CartService, CartItem } from '../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageUtils } from '../utils/image.utils';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',

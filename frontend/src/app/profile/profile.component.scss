@@ -9,13 +9,15 @@
 }
 
 .profile-content {
-  display: grid;
+  @extend .grid-layout;
   grid-template-columns: 1fr 300px;
   gap: 30px;
   align-items: start;
 }
 
 .profile-card {
+  @extend .card;
+  
   .mat-card-content {
     display: flex;
     gap: 30px;
@@ -81,7 +83,7 @@
 
 .picture-preview {
   margin-top: 20px;
-  text-align: center;
+  @extend .text-center;
 
   .preview-image {
     width: 150px;
@@ -93,8 +95,7 @@
   }
 
   .preview-actions {
-    display: flex;
-    gap: 10px;
+    @extend .action-buttons;
     justify-content: center;
   }
 }
@@ -112,30 +113,14 @@
   }
 }
 
-.full-width {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
 .name-fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-.half-width {
-  width: 100%;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
-}
-
 .stats-card {
+  @extend .card;
   margin-top: 30px;
 
   h3 {
@@ -147,8 +132,7 @@
 }
 
 .stats-grid {
-  display: grid;
-  gap: 20px;
+  @extend .grid-layout;
 }
 
 .stat-item {
@@ -182,13 +166,6 @@
   font-size: 14px;
   font-weight: 600;
   color: #333;
-}
-
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
 }
 
 @media (max-width: 768px) {
