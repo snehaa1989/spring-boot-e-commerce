@@ -1,0 +1,80 @@
+<div class="cart-content">
+  <div class="cart-items">
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <img [src]="item.product.imageUrl || getDefaultImage(item.product.name)" 
+           [alt]="item.product.name" 
+           class="item-image"
+           (error)="onImageError($event)">
+      
+      <div class="item-details">
+        <div class="item-name">{{ item.product.name }}</div>
+        <div class="item-price">${{ item.product.price }}</div>
+        
+        <div class="quantity-controls">
+          <button class="quantity-btn" 
+                  (click)="updateQuantity(item.product.id, item.quantity - 1)"
+                  [disabled]="item.quantity <= 1">-</button>
+          <input type="number" 
+                 class="quantity-input" 
+                 [(ngModel)]="item.quantity" 
+                 (change)="updateQuantity(item.product.id, item.quantity)"
+                 min="1">
+          <button class="quantity-btn" 
+                  (click)="updateQuantity(item.product.id, item.quantity + 1)">+</button>
+        </div>
+      </div>
+      
+      <div class="item-actions">
+        <div class="item-total">${{ item.product.price * item.quantity }}</div>
+        <button class="remove-btn" (click)="removeFromCart(item.product.id)">
+          Remove
+        </button>
+      </div>
+    </div>
+    
+    <div class="empty-cart" *ngIf="cartItems.length === 0">
+      <mat-icon class="empty-cart-icon">shopping_cart</mat-icon>
+      <div class="empty-cart-text">Your cart is empty</div>
+    </div>
+  </div>
+  
+  <div class="cart-summary" *ngIf="cartItems.length > 0">
+    <mat-card>
+      <mat-card-content>
+        <h3 class="summary-title">Order Summary</h3>
+        
+        <div class="summary-row">
+          <span class="summary-label">Subtotal:</span>
+          <span class="summary-value">${{ totalPrice }}</span>
+        </div>
+        
+        <div class="summary-row">
+          <span class="summary-label">Tax:</span>
+          <span class="summary-value">${{ (totalPrice * 0.1).toFixed(2) }}</span>
+        </div>
+        
+        <div class="summary-row total-row">
+          <span class="summary-label">Total:</span>
+          <span class="summary-value">${{ (totalPrice * 1.1).toFixed(2) }}</span>
+        </div>
+        
+        <button mat-raised-button 
+                color="primary" 
+                class="checkout-btn"
+                (click)="checkout()"
+                [disabled]="isLoading">
+          <mat-icon *ngIf="!isLoading">shopping_cart</mat-icon>
+          <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+          {{ isLoading ? 'Processing...' : 'Checkout' }}
+        </button>
+        
+        <button mat-button 
+                color="warn" 
+                class="clear-cart-btn"
+                (click)="clearCart()">
+          Clear Cart
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

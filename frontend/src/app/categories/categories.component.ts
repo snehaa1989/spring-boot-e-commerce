@@ -5,7 +5,7 @@ import { Category } from '../models/product.models';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
   categories: Category[] = [];

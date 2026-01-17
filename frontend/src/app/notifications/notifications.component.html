@@ -1,0 +1,50 @@
+<div class="notifications-container">
+  <h3>Notifications</h3>
+  
+  <div class="notifications-header">
+    <span class="unread-count">{{ unreadCount }} unread</span>
+    <button mat-button (click)="markAllAsRead()" *ngIf="unreadCount > 0">
+      Mark all as read
+    </button>
+    <button mat-button (click)="clearAll()">
+      Clear all
+    </button>
+  </div>
+
+  <div class="notifications-list" *ngIf="notifications$ | async as notifications">
+    <div class="notification-item" 
+         *ngFor="let notification of notifications" 
+         [class.unread]="!notification.read">
+      
+      <mat-icon class="notification-icon" 
+                [class]="notification.type">
+        {{ getNotificationIcon(notification.type) }}
+      </mat-icon>
+      
+      <div class="notification-content">
+        <div class="notification-title">{{ notification.title }}</div>
+        <div class="notification-message">{{ notification.message }}</div>
+        <div class="notification-time">{{ notification.timestamp | date:'short' }}</div>
+      </div>
+      
+      <div class="notification-actions">
+        <button mat-icon-button 
+                (click)="markAsRead(notification.id)" 
+                *ngIf="!notification.read"
+                matTooltip="Mark as read">
+          <mat-icon>done</mat-icon>
+        </button>
+        <button mat-icon-button 
+                (click)="removeNotification(notification.id)"
+                matTooltip="Remove">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    
+    <div class="no-notifications" *ngIf="notifications.length === 0">
+      <mat-icon>notifications_off</mat-icon>
+      <p>No notifications</p>
+    </div>
+  </div>
+</div>

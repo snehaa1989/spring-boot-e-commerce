@@ -1,27 +1,37 @@
-@import '../styles/common.scss';
+@import '../styles/common.css';
 
 .profile-container {
-  @extend .container;
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px;
 }
 
 .profile-header {
-  @extend .header;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
 }
 
 .profile-content {
-  @extend .grid-layout;
+  display:grid;
+  gap:20px;
   grid-template-columns: 1fr 300px;
   gap: 30px;
   align-items: start;
 }
 
 .profile-card {
-  @extend .card;
-  
-  .mat-card-content {
-    display: flex;
-    gap: 30px;
-  }
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 2px 4px rgba(0,0,0,.1);
+  padding:20px;
+  margin-bottom:20px;
+}
+
+.profile-card .mat-card-content {
+  display: flex;
+  gap: 30px;
 }
 
 .profile-picture-section {
@@ -42,10 +52,10 @@
   object-fit: cover;
   border: 4px solid #e0e0e0;
   transition: border-color 0.3s ease;
+}
 
-  &:hover {
-    border-color: #2196F3;
-  }
+.profile-picture:hover {
+  border-color: #2196F3;
 }
 
 .upload-overlay {
@@ -62,55 +72,57 @@
   opacity: 0;
   transition: opacity 0.3s ease;
   cursor: pointer;
+}
 
-  &:hover {
-    opacity: 1;
-  }
+.upload-overlay:hover {
+  opacity: 1;
+}
 
-  input[type="file"] {
-    display: none;
-  }
+.upload-overlay input[type="file"] {
+  display: none;
+}
 
-  button {
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 1);
-    }
-  }
+.upload-overlay button {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
+.upload-overlay button:hover {
+  background: rgba(255, 255, 255, 1);
 }
 
 .picture-preview {
   margin-top: 20px;
-  @extend .text-center;
+  text-align:center;
+}
 
-  .preview-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #e0e0e0;
-    margin-bottom: 15px;
-  }
+.picture-preview .preview-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e0e0;
+  margin-bottom: 15px;
+}
 
-  .preview-actions {
-    @extend .action-buttons;
-    justify-content: center;
-  }
+.picture-preview .preview-actions {
+  display:flex;
+  gap:15px;
+  margin-top:30px;
+  padding-top:20px;
+  border-top:1px solid #e0e0e0;
+  justify-content: center;
 }
 
 .profile-info {
   flex: 1;
 }
 
-.info-section {
-  h3 {
-    margin: 0 0 20px 0;
-    color: #333;
-    font-size: 18px;
-    font-weight: 600;
-  }
+.info-section h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .name-fields {
@@ -120,19 +132,24 @@
 }
 
 .stats-card {
-  @extend .card;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 2px 4px rgba(0,0,0,.1);
+  padding:20px;
+  margin-bottom:20px;
   margin-top: 30px;
+}
 
-  h3 {
-    margin: 0 0 20px 0;
-    color: #333;
-    font-size: 18px;
-    font-weight: 600;
-  }
+.stats-card h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .stats-grid {
-  @extend .grid-layout;
+  display:grid;
+  gap:20px;
 }
 
 .stat-item {

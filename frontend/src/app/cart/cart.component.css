@@ -1,4 +1,4 @@
-@import '../styles/common.scss';
+@import '../styles/common.css';
 
 .cart-content{grid-template-columns:1fr 350px;gap:30px;align-items:start}
 .cart-items{display:flex;flex-direction:column;gap:20px}
