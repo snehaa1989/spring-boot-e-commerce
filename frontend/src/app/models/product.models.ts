@@ -17,12 +17,10 @@ export interface Category {
 
 export interface Order {
   id: string;
-  userId: string;
   items: OrderItem[];
   totalAmount: number;
-  status: OrderStatus;
+  status: string;
   createdAt: string;
-  updatedAt: string;
 }
 
 export interface OrderItem {
@@ -30,13 +28,4 @@ export interface OrderItem {
   productName: string;
   quantity: number;
   price: number;
-  subtotal: number;
-}
-
-export enum OrderStatus {
-  PENDING = 'PENDING',
-  CONFIRMED = 'CONFIRMED',
-  SHIPPED = 'SHIPPED',
-  DELIVERED = 'DELIVERED',
-  CANCELLED = 'CANCELLED'
 }
