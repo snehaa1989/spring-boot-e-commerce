@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +62,15 @@ public class AuthService {
         user.setUsername(signUpRequest.getUsername());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+        
+        // Initialize profile fields
+        user.setFirstName("");
+        user.setLastName("");
+        user.setPhone("");
+        user.setAddress("");
+        user.setProfilePicture("https://ui-avatars.com/api/?name=" + signUpRequest.getUsername() + "&background=random&color=fff");
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
         
         List<Role> roles = new ArrayList<>();
         Role userRole = roleRepository.findByName("ROLE_USER")

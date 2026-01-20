@@ -21,6 +21,14 @@ export interface Order {
   totalAmount: number;
   status: string;
   createdAt: string;
+  shippingAddress?: ShippingAddress;
+  billingAddress?: ShippingAddress;
+  paymentMethod?: string;
+  shippingMethod?: string;
+  subtotal?: number;
+  tax?: number;
+  shipping?: number;
+  orderNotes?: string;
 }
 
 export interface OrderItem {
@@ -28,4 +36,16 @@ export interface OrderItem {
   productName: string;
   quantity: number;
   price: number;
+  subtotal?: number;
+  product?: Product;
+}
+
+export interface ShippingAddress {
+  fullName: string;
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+  phone: string;
 }

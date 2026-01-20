@@ -28,7 +28,7 @@ public class OrderController {
     @GetMapping("/my-orders")
     public List<Order> getMyOrders() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userId = ((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername();
+        String userId = authentication.getName();
         return orderService.getOrdersByUserId(userId);
     }
     
@@ -43,7 +43,7 @@ public class OrderController {
     @PostMapping
     public Order createOrder(@RequestBody Order order) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userId = ((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername();
+        String userId = authentication.getName();
         order.setUserId(userId);
         return orderService.createOrder(order);
     }
@@ -53,6 +53,20 @@ public class OrderController {
     public ResponseEntity<Order> updateOrderStatus(@PathVariable String id, @RequestBody Order.OrderStatus status) {
         return orderService.getOrderById(id)
                 .map(order -> ResponseEntity.ok(orderService.updateOrderStatus(id, status)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
+    @PutMapping("/{id}/cancel")
+    @PreAuthorize("hasRole('ADMIN') or @orderService.getOrderById(#id).get().userId == authentication.name")
+    public ResponseEntity<?> cancelOrder(@PathVariable String id) {
+        return orderService.getOrderById(id)
+                .map(order -> {
+                    if (order.getStatus() == Order.OrderStatus.PENDING) {
+                        return ResponseEntity.ok(orderService.updateOrderStatus(id, Order.OrderStatus.CANCELLED));
+                    } else {
+                        return ResponseEntity.badRequest().body("Order can only be cancelled if it's in PENDING status");
+                    }
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
     

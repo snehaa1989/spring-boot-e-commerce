@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CartComponent } from './cart/cart.component';
@@ -25,6 +27,8 @@ import { MaterialModule } from './material.module';
     LoginComponent,
     RegisterComponent,
     ProductsComponent,
+    ProductDetailsComponent,
+    CheckoutComponent,
     CategoriesComponent,
     OrdersComponent,
     CartComponent,

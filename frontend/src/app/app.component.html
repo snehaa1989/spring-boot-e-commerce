@@ -36,8 +36,8 @@
     <!-- User Actions -->
     <ng-container *ngIf="isLoggedIn">
       <button mat-icon-button routerLink="/profile" class="nav-icon-button profile-button">
-        <img [src]="getProfilePicture" 
-               [alt]="displayName" 
+        <img [src]="(profilePicture$ | async)" 
+               [alt]="(displayName$ | async)" 
                class="navbar-profile-picture"
                (error)="onProfileImageError($event)">
       </button>

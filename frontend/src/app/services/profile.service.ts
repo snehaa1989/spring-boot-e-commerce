@@ -65,4 +65,16 @@ export class ProfileService {
       this.profileSubject.next(updatedProfile);
     }
   }
+
+  // Update profile picture in the service
+  updateProfilePicture(profilePictureUrl: string): void {
+    const currentProfile = this.profileSubject.value;
+    if (currentProfile) {
+      const updatedProfile = {
+        ...currentProfile,
+        profilePicture: profilePictureUrl
+      };
+      this.profileSubject.next(updatedProfile);
+    }
+  }
 }

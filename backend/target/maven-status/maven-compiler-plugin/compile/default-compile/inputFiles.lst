@@ -9,6 +9,7 @@ C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommer
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\repository\RoleRepository.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\controller\AuthController.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\config\WebConfig.java
+C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\service\ProfileService.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\service\OrderService.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\dto\ApiResponse.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\dto\LoginRequest.java
@@ -20,6 +21,7 @@ C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommer
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\repository\OrderRepository.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\repository\ProductRepository.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\service\CustomUserDetailsService.java
+C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\controller\ProfileController.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\model\Role.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\service\ProductService.java
 C:\Users\sneha\OneDrive\Desktop\E-commerce app\backend\src\main\java\com\ecommerce\dto\JwtResponse.java

@@ -2,6 +2,50 @@
 
 A full-stack e-commerce application built with Spring Boot and Angular, featuring JWT authentication, role-based access control, and MongoDB integration.
 
+## 📸 Application Screenshots
+
+### 🏠 Login & Registration
+![Login Page](screenshots/login.png)
+*Clean and modern login interface with JWT authentication*
+
+![Register Page](screenshots/register.png)
+*User registration form with validation*
+
+### 🛍️ Product Catalog
+![Products Page](screenshots/products.png)
+*Product grid with search, filtering, and add-to-cart functionality*
+
+![Product Details](screenshots/product_details.png)
+*Detailed product view with specifications and reviews*
+
+### 🛒 Shopping Cart
+![Shopping Cart](screenshots/cart.png)
+*Cart management with quantity controls and checkout*
+
+### �️ Checkout Process
+![Checkout Page](screenshots/checkout.png)
+*Complete checkout flow with shipping information, payment options, and order placement*
+
+### � Order Management
+![Orders Page](screenshots/orders.png)
+*Order history with status tracking and cancellation functionality*
+
+### 👤 User Profile
+![Profile Page](screenshots/profile.png)
+*Complete user profile management with profile picture upload, personal information editing, and account statistics*
+
+### 🔔 Notifications
+![Notifications](screenshots/notifications.png)
+*Real-time notifications with mark as read functionality*
+
+### 📱 Categories
+![Categories Page](screenshots/categories.png)
+*Product category browsing with filtering*
+
+### 🎨 Responsive Design
+![Mobile View](screenshots/mobile-responsive.png)
+*Fully responsive design for mobile devices*
+
 ## Architecture
 
 ### Backend (Spring Boot)
@@ -9,7 +53,7 @@ A full-stack e-commerce application built with Spring Boot and Angular, featurin
 - **Database**: MongoDB
 - **Authentication**: JWT with Spring Security
 - **Build Tool**: Maven
-- **Java Version**: 17
+- **Java Version**: 18
 
 ### Frontend (Angular)
 - **Framework**: Angular 17
@@ -37,9 +81,10 @@ A full-stack e-commerce application built with Spring Boot and Angular, featurin
 - Category CRUD operations (admin only)
 
 ### Order Management
-- Create orders
+- Create orders from cart items
 - View order history
-- Track order status
+- Track order status (PENDING, CONFIRMED, SHIPPED, DELIVERED, CANCELLED)
+- Order cancellation (PENDING orders only)
 - Order management (admin only)
 
 ### User Interface
@@ -47,6 +92,10 @@ A full-stack e-commerce application built with Spring Boot and Angular, featurin
 - Modern, clean interface
 - Mobile-friendly layout
 - Intuitive navigation
+- User profile management
+- Profile picture upload with MongoDB storage
+- Personal information editing
+- Account statistics
 
 ## Project Structure
 

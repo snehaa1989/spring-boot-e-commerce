@@ -5,6 +5,7 @@ import { CartService } from '../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageUtils } from '../utils/image.utils';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -19,7 +20,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -73,11 +75,7 @@ export class ProductsComponent implements OnInit {
   }
 
   viewProductDetails(product: Product): void {
-    // Navigate to product details page (you can implement this later)
-    console.log('View details for:', product);
-    this.snackBar.open(`Opening details for ${product.name}`, 'Close', {
-      duration: 2000
-    });
+    this.router.navigate(['/products', product.id]);
   }
 
   getDefaultImage(productName: string): string {

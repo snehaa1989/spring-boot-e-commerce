@@ -26,6 +26,26 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProfile();
+    
+    // Initialize profile if user is logged in but no profile data exists
+    if (this.authService.isLoggedIn && !this.profile) {
+      // Create a basic profile from auth data if no profile exists
+      const currentUser = this.authService.currentUserValue;
+      if (currentUser) {
+        this.profile = {
+          id: currentUser.id,
+          username: currentUser.username,
+          email: currentUser.email,
+          firstName: '',
+          lastName: '',
+          phone: '',
+          address: '',
+          profilePicture: this.getDefaultProfilePicture(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        };
+      }
+    }
   }
 
   loadProfile(): void {
@@ -74,7 +94,8 @@ export class ProfileComponent implements OnInit {
       next: (response) => {
         if (this.profile) {
           this.profile.profilePicture = response.profilePicture;
-          this.profileService.setDefaultProfilePicture();
+          // Update profile service with new picture
+          this.profileService.updateProfilePicture(response.profilePicture);
         }
         this.selectedFile = null;
         this.previewUrl = null;

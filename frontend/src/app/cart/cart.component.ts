@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService, CartItem } from '../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ImageUtils } from '../utils/image.utils';
 
 @Component({
@@ -15,7 +16,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,15 +61,8 @@ export class CartComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true;
-    // TODO: Implement checkout logic
-    setTimeout(() => {
-      this.isLoading = false;
-      this.snackBar.open('Order placed successfully!', 'Close', {
-        duration: 3000
-      });
-      this.clearCart();
-    }, 2000);
+    // Navigate to checkout page
+    this.router.navigate(['/checkout']);
   }
 
   private updateTotalPrice(): void {

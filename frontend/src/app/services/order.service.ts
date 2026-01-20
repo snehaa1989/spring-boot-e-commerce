@@ -28,6 +28,10 @@ export class OrderService {
     return this.http.post<Order>(API_URL, order);
   }
 
+  cancelOrder(id: string): Observable<Order> {
+    return this.http.put<Order>(API_URL + '/' + id + '/cancel', {});
+  }
+
   updateOrderStatus(id: string, status: string): Observable<Order> {
     return this.http.put<Order>(API_URL + '/' + id + '/status', status);
   }

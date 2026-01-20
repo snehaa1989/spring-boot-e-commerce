@@ -1,0 +1,108 @@
+<div class="product-details-container" *ngIf="!isLoading; else loading">
+  <div class="back-button" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+    <span>Back to Products</span>
+  </div>
+
+  <div class="product-details-content" *ngIf="product; else noProduct">
+    <!-- Product Image Section -->
+    <div class="product-image-section">
+      <img [src]="product.imageUrl" [alt]="product.name" class="product-image">
+      <div class="image-overlay">
+        <mat-icon>zoom_in</mat-icon>
+      </div>
+    </div>
+
+    <!-- Product Information Section -->
+    <div class="product-info-section">
+      <div class="product-header">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <div class="product-category">{{ product.categoryId }}</div>
+      </div>
+
+      <div class="product-price-section">
+        <div class="price">${{ product.price | number:'1.2-2' }}</div>
+        <div class="stock-status" [class]="getStockStatusClass()">
+          {{ getStockStatus() }}
+        </div>
+      </div>
+
+      <div class="product-description">
+        <h3>Description</h3>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div class="product-actions">
+        <div class="quantity-selector">
+          <button mat-icon-button (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <div class="quantity-display">{{ quantity }}</div>
+          <button mat-icon-button (click)="increaseQuantity()" [disabled]="quantity >= product.stockQuantity">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <button mat-raised-button 
+                color="primary" 
+                class="add-to-cart-btn"
+                (click)="addToCart()"
+                [disabled]="product.stockQuantity === 0">
+          <mat-icon>shopping_cart</mat-icon>
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="product-features">
+        <div class="feature">
+          <mat-icon class="feature-icon">local_shipping</mat-icon>
+          <span>Free Shipping</span>
+        </div>
+        <div class="feature">
+          <mat-icon class="feature-icon">verified</mat-icon>
+          <span>Quality Guaranteed</span>
+        </div>
+        <div class="feature">
+          <mat-icon class="feature-icon">refresh</mat-icon>
+          <span>30-Day Returns</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products Section -->
+  <div class="related-products-section" *ngIf="relatedProducts.length > 0">
+    <h2 class="section-title">Related Products</h2>
+    <div class="related-products-grid">
+      <div class="related-product-card" 
+           *ngFor="let relatedProduct of relatedProducts" 
+           (click)="viewRelatedProduct(relatedProduct.id)">
+        <img [src]="relatedProduct.imageUrl" [alt]="relatedProduct.name" class="related-product-image">
+        <div class="related-product-info">
+          <h4>{{ relatedProduct.name }}</h4>
+          <div class="related-product-price">${{ relatedProduct.price | number:'1.2-2' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Template -->
+<ng-template #loading>
+  <div class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Loading product details...</p>
+  </div>
+</ng-template>
+
+<!-- No Product Template -->
+<ng-template #noProduct>
+  <div class="no-product-container">
+    <mat-icon class="empty-icon">find_in_page</mat-icon>
+    <h2>Product Not Found</h2>
+    <p>The product you're looking for doesn't exist.</p>
+    <button mat-raised-button color="primary" (click)="goBack()">
+      Back to Products
+    </button>
+  </div>
+</ng-template>
