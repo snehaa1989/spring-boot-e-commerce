@@ -42,10 +42,6 @@ A full-stack e-commerce application built with Spring Boot and Angular, featurin
 ![Categories Page](screenshots/categories.png)
 *Product category browsing with filtering*
 
-### 🎨 Responsive Design
-![Mobile View](screenshots/mobile-responsive.png)
-*Fully responsive design for mobile devices*
-
 ## Architecture
 
 ### Backend (Spring Boot)
