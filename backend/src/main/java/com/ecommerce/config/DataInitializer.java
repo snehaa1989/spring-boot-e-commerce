@@ -2,13 +2,18 @@ package com.ecommerce.config;
 import com.ecommerce.model.Role;
 import com.ecommerce.model.Category;
 import com.ecommerce.model.Product;
+import com.ecommerce.model.User;
 import com.ecommerce.repository.RoleRepository;
 import com.ecommerce.repository.CategoryRepository;
 import com.ecommerce.repository.ProductRepository;
+import com.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -21,6 +26,12 @@ public class DataInitializer implements CommandLineRunner {
     
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -37,6 +48,20 @@ public class DataInitializer implements CommandLineRunner {
             adminRole.setName("ROLE_ADMIN");
             roleRepository.save(adminRole);
             System.out.println("Created ROLE_ADMIN");
+        }
+        
+        // Create default admin user if it doesn't exist
+        if (!userRepository.findByEmail("admin@ecommerce.com").isPresent()) {
+            User adminUser = new User();
+            adminUser.setEmail("admin@ecommerce.com");
+            adminUser.setUsername("admin");
+            adminUser.setPassword(passwordEncoder.encode("admin123"));
+            adminUser.setFirstName("Admin");
+            adminUser.setLastName("User");
+            adminUser.setPhone("1234567890");
+            adminUser.setRoles(Arrays.asList(roleRepository.findByName("ROLE_ADMIN").orElse(null)));
+            userRepository.save(adminUser);
+            System.out.println("Created default admin user: admin@ecommerce.com / admin123");
         }
         
         // Initialize categories if they don't exist
